@@ -1,0 +1,26 @@
+Model Evaluation and Hyperparameter Tuning Analysis 
+I trained and evaluated four models:
+1.Logistic Regression
+2.Random Forest
+3.Support Vector Machine (SVM)
+4.K-Nearest Neighbors (KNN)
+
+Before tuning, both Logistic Regression and SVM showed the best performance with an F1 score of 0.9861, while Random Forest and KNN were slightly lower with an F1 score of 0.9655.
+I performed hyperparameter tuning using:
+GridSearchCV for Logistic Regression, Random Forest, and KNN
+A two-step tuning approach for SVM: I first used RandomizedSearchCV to broadly explore the parameter space, then used GridSearchCV to fine-tune around the best region found
+
+After tuning:
+SVM maintained its top performance, which showed that it was already well-optimized. Its F1 score remained at 0.9861, making it the most stable and consistent model.
+KNN improved significantly, especially in Recall, which increased to 1.0 (perfect detection of all positive cases). Its F1 score also rose to 0.9796, making it a strong runner-up.
+Logistic Regression's performance slightly dropped after tuning (F1 score decreased to 0.9793), possibly because the tuned regularization wasn't as effective as the default.
+Random Forest showed no improvement after tuning. Its metrics stayed the same, suggesting that either the tuning grid wasn't wide enough, or the model was already close to its optimal configuration.
+
+The best-performing model overall was SVM.
+It had the highest F1 score, precision, recall, and accuracy — both before and after tuning.
+Using both RandomizedSearchCV and GridSearchCV helped me confirm that its configuration was already optimal.
+
+If recall was more important (such as in medical or fraud detection), the best model was tuned KNN.
+Its recall reached 1.0, meaning it identified all true positive cases. Although its precision was slightly lower, this trade-off was acceptable in high-recall scenarios.
+
+In conclusion, SVM turned out to be the most reliable and best-balanced model in this task. KNN came close when high recall was the priority. Hyperparameter tuning helped me validate and improve the models, and the two-step tuning for SVM was especially effective.
